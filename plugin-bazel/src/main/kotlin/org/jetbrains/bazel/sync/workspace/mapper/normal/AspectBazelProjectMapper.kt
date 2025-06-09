@@ -802,6 +802,10 @@ class AspectBazelProjectMapper(
       "go_library",
       "go_binary",
       "go_test",
+      "_pex_binary",
+      "go_remote_library_info",
+      "_scala_macro_library",
+      "scala_junit_test",
     )
 
   // TODO BAZEL-2208
@@ -911,6 +915,13 @@ class AspectBazelProjectMapper(
       "py_binary" to setOf(LanguageClass.PYTHON),
       "py_test" to setOf(LanguageClass.PYTHON),
       "py_library" to setOf(LanguageClass.PYTHON),
+      "_pex_binary" to setOf(LanguageClass.PYTHON),
+      "py_lib" to setOf(LanguageClass.PYTHON),
+      "go_library" to setOf(LanguageClass.GO),
+      "go_test" to setOf(LanguageClass.GO),
+      "go_remote_library_info" to setOf(LanguageClass.GO),
+      "_scala_macro_library" to setOf(LanguageClass.SCALA),
+      "scala_junit_test" to setOf(LanguageClass.SCALA),
     )
 
   private fun inferLanguages(target: TargetInfo): Set<LanguageClass> =

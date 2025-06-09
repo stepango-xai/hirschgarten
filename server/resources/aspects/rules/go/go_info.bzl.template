@@ -32,6 +32,7 @@ def extract_go_info(target, ctx, output_groups, **kwargs):
         "go_appengine_binary",
         "go_appengine_library",
         "go_appengine_test",
+        "go_remote_library_info",
     ]:
         sources = [f for src in getattr(ctx.rule.attr, "srcs", []) for f in src.files.to_list()]
     elif rule_kind == "go_wrap_cc":

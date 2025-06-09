@@ -50,7 +50,7 @@ def extract_scalatest_classpath(rule_attr):
 
 def extract_scala_info(target, ctx, output_groups, **kwargs):
     kind = ctx.rule.kind
-    if not kind.startswith("scala_") and not kind.startswith("thrift_"):
+    if "scala_" not in kind and "thrift_" not in kind:
         return None, None
 
     SCALA_TOOLCHAIN = "@${rulesetNameApparent}//scala:toolchain_type"
