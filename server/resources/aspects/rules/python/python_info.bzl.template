@@ -98,6 +98,16 @@ def extract_python_info(target, ctx, output_groups, **kwargs):
         for f in files_to_list(t)
         if not f.is_directory
     ]
+    # TODO: not sure we need it
+    if len(sources) == 0:
+        transitive_sources = getattr(ctx.rule.attr, "transitive_sources", [])
+        sources = [
+            file_location(f)
+            for t in transitive_sources
+            for f in files_to_list(t)
+            if not f.is_directory
+        ]
+
     generated_sources=[]
 
     provider = get_py_runtime_info(ctx)
@@ -107,6 +117,17 @@ def extract_python_info(target, ctx, output_groups, **kwargs):
 
     final_interpreter = interpreter if interpreter != None else interpreter_path
     imports = getattr(ctx.rule.attr, "imports", [])
+#     print("^^^")
+#     print("??? " + target.label.repo_name)
+#     print("??? " + target.label.package)
+#     print("??? " + target.label.name)
+#     print("^^^")
+    repo_name = target.label.repo_name
+    if "pydeps__" in repo_name:
+        if "linux" in target.label.name:
+            return None, None
+        imports = [i.partition(":")[0] if i.endswith(".whl") else i for i in imports]
+
     is_code_generator = False
 
     if 0 == len(sources) and ctx.rule.kind in CODE_GENERATOR_RULE_NAMES:

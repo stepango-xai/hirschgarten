@@ -10,6 +10,7 @@ import org.jetbrains.bsp.protocol.FeatureFlags
 
 object BazelFeatureFlags {
   private const val PYTHON_SUPPORT = "bsp.python.support"
+  private const val ANDROID_SUPPORT = "bsp.android.support"
 
   @VisibleForTesting
   const val GO_SUPPORT = "bsp.go.support"
@@ -36,8 +37,14 @@ object BazelFeatureFlags {
   private const val EXCLUDE_SYMLINKS_FROM_FILE_WATCHER_VIA_REFLECTION = "bazel.exclude.symlinks.from.file.watcher.via.reflection"
   private const val FIND_IN_FILES_NON_INDEXABLE = "bazel.find.in.files.non.indexable"
 
+  // X customizations
+  private const val PYTHON_TARGETS_UPPER_LIMIT = "bazel.python.targets.upper.limit"
+
   val isPythonSupportEnabled: Boolean
     get() = isEnabled(PYTHON_SUPPORT)
+
+  val isAndroidSupportEnabled: Boolean
+    get() = isEnabled(ANDROID_SUPPORT)
 
   val isGoSupportEnabled: Boolean
     get() = isEnabled(GO_SUPPORT)
@@ -108,6 +115,9 @@ object BazelFeatureFlags {
   val findInFilesNonIndexable: Boolean
     get() = isEnabled(FIND_IN_FILES_NON_INDEXABLE)
 
+  val pythonTargetsUpperLimit: Int
+    get() = Registry.intValue(PYTHON_TARGETS_UPPER_LIMIT, 929)
+
   private fun isEnabled(key: String): Boolean = Registry.`is`(key) || System.getProperty(key, "false").toBoolean()
 }
 
@@ -115,8 +125,9 @@ object FeatureFlagsProvider {
   fun getFeatureFlags(project: Project): FeatureFlags =
     with(BazelFeatureFlags) {
       FeatureFlags(
-        isPythonSupportEnabled = isPythonSupportEnabled,
-        isGoSupportEnabled = isGoSupportEnabled,
+        isPythonSupportEnabled = true,
+        isAndroidSupportEnabled = false,
+        isGoSupportEnabled = false,
         isPropagateExportsFromDepsEnabled = !isWrapLibrariesInsideModulesEnabled,
         bazelSymlinksScanMaxDepth = symlinkScanMaxDepth,
         bazelShutDownBeforeShardBuild = shutDownBeforeShardBuild,

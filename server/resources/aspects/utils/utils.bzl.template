@@ -302,7 +302,11 @@ COMPILE_DEPS = [
     "embed", # from rules_go
     "compilers",  # From go_proto_library
     "java_lib",  # From old proto_library rules
-    "proc_macro_deps"
+    "proc_macro_deps",
+    "child",
+    "transitive_thirdparty_closure",
+    "py_library_targets",
+    ${cppDeps}
 ]
 
 PRIVATE_COMPILE_DEPS = [

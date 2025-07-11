@@ -802,6 +802,14 @@ class AspectBazelProjectMapper(
       "go_library",
       "go_binary",
       "go_test",
+<<<<<<< HEAD:plugin-bazel/src/main/kotlin/org/jetbrains/bazel/sync/workspace/mapper/normal/AspectBazelProjectMapper.kt
+=======
+      "_pex_binary",
+      "go_remote_library_info",
+      "_scala_macro_library",
+      "scala_junit_test",
+      "closure_python_requirement_library_rule",
+>>>>>>> 00e6c4f2f (2025.2 patches to support x customizations):server/server/src/main/kotlin/org/jetbrains/bazel/server/sync/BazelProjectMapper.kt
     )
 
   // TODO BAZEL-2208
@@ -911,6 +919,12 @@ class AspectBazelProjectMapper(
       "py_binary" to setOf(LanguageClass.PYTHON),
       "py_test" to setOf(LanguageClass.PYTHON),
       "py_library" to setOf(LanguageClass.PYTHON),
+      "_pex_binary" to setOf(LanguageClass.PYTHON),
+      "py_lib" to setOf(LanguageClass.PYTHON),
+      "go_remote_library_info" to setOf(LanguageClass.GO),
+      "_scala_macro_library" to setOf(LanguageClass.SCALA),
+      "scala_junit_test" to setOf(LanguageClass.SCALA),
+      "closure_python_requirement_library_rule" to setOf(LanguageClass.PYTHON),
     )
 
   private fun inferLanguages(target: TargetInfo): Set<LanguageClass> =

@@ -13,7 +13,6 @@ import org.jetbrains.bazel.config.rootDir
 
 class BazelPyImportResolver : PyImportResolver {
   val cacheKey = "PythonResolveIndex"
-
   override fun resolveImportReference(
     name: QualifiedName,
     context: PyQualifiedNameResolveContext,

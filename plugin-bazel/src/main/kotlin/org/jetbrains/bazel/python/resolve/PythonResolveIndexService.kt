@@ -173,7 +173,7 @@ class PythonResolveIndexService(private val project: Project) : PersistentStateC
     if (0 == buildParentPath.nameCount) {
       buildParentPath = Path.of(".")
     }
-    return ideInfo.imports.map {
+    return ideInfo.imports.filter { !it.contains('.') }.map {
       buildParentPath.resolve(it).normalize()
     }
   }

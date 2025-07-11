@@ -6,6 +6,7 @@ package org.jetbrains.bsp.protocol
  */
 data class FeatureFlags(
   val isPythonSupportEnabled: Boolean = false,
+  val isAndroidSupportEnabled: Boolean = false,
   val isGoSupportEnabled: Boolean = false,
   val isPropagateExportsFromDepsEnabled: Boolean = true,
   val isSharedSourceSupportEnabled: Boolean = false,
