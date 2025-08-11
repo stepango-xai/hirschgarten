@@ -1,6 +1,10 @@
 """Developer versions of plugins."""
 
-INTELLIJ_BAZEL_VERSION = "9999.9.9"
+<<<<<<< HEAD
+INTELLIJ_BAZEL_VERSION = "7025.2-017x"
+=======
+INTELLIJ_BAZEL_VERSION = "7025.2-017x"
+>>>>>>> 957c9ebab (BAZEL-2297: registry flag for disabling search in unindexed files)
 
 PLATFORM_VERSION = "252"
 

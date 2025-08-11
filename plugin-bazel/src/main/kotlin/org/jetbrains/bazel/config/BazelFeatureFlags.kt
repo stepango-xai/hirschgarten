@@ -35,6 +35,12 @@ object BazelFeatureFlags {
   private const val ENABLE_BAZEL_QUERY_TAB = "bazel.query.tab.enabled"
   private const val EXCLUDE_SYMLINKS_FROM_FILE_WATCHER_VIA_REFLECTION = "bazel.exclude.symlinks.from.file.watcher.via.reflection"
   private const val FIND_IN_FILES_NON_INDEXABLE = "bazel.find.in.files.non.indexable"
+<<<<<<< HEAD
+=======
+
+  // X customizations
+  private const val PYTHON_TARGETS_UPPER_LIMIT = "bazel.python.targets.upper.limit"
+>>>>>>> 957c9ebab (BAZEL-2297: registry flag for disabling search in unindexed files)
 
   val isPythonSupportEnabled: Boolean
     get() = isEnabled(PYTHON_SUPPORT)
