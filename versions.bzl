@@ -1,6 +1,10 @@
 """Developer versions of plugins."""
 
+<<<<<<< HEAD
 INTELLIJ_BAZEL_VERSION = "9999.9.9"
+=======
+INTELLIJ_BAZEL_VERSION = "7025.2-019x"
+>>>>>>> 8055feb16 (capping number of targets)
 
 PLATFORM_VERSION = "252"
 

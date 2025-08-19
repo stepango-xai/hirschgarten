@@ -392,6 +392,16 @@
       description="Whether the Bazel Query tab should be enabled in tool window (where target tree is)"
       key="bazel.query.tab.enabled"
     />
+    <registryKey
+      defaultValue="929"
+      description="Maximum number of Python targets to process during sync"
+      key="bazel.python.targets.upper.limit"
+    />
+    <registryKey
+      defaultValue="5845"
+      description="Maximum number of targets to process during sync"
+      key="bazel.x.target.limit"
+    />
 
     <!--Restart required here to clear cache-->
     <registryKey
@@ -409,7 +419,7 @@
     />
 
     <registryKey
-      defaultValue="true"
+      defaultValue="false"
       description="&quot;Find in files&quot; also searches directories that are neither included nor excluded in the project view"
       key="bazel.find.in.files.non.indexable"
       restartRequired="true"

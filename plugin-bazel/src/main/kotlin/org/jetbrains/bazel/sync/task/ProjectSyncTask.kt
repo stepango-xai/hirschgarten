@@ -41,6 +41,7 @@ import org.jetbrains.bazel.sync.scope.ProjectSyncScope
 import org.jetbrains.bazel.sync.status.SyncAlreadyInProgressException
 import org.jetbrains.bazel.sync.status.SyncFatalFailureException
 import org.jetbrains.bazel.sync.status.SyncPartialFailureException
+import com.intellij.openapi.util.registry.Registry
 import org.jetbrains.bazel.sync.status.SyncStatusService
 import org.jetbrains.bazel.sync.workspace.BazelWorkspaceResolveService
 import org.jetbrains.bazel.ui.console.ids.BASE_PROJECT_SYNC_SUBTASK_ID
@@ -181,11 +182,39 @@ class ProjectSyncTask(private val project: Project) {
               taskId = PROJECT_SYNC_TASK_ID,
               subtaskId = BASE_PROJECT_SYNC_SUBTASK_ID,
               message = BazelPluginBundle.message("console.task.base.sync"),
+<<<<<<< HEAD
             ) {
               // force full re-sync
               resolver.invalidateCachedState()
               resolver.getOrFetchSyncedProject(build = buildProject, taskId = PROJECT_SYNC_TASK_ID)
             }
+          project.syncConsole.addMessage(PROJECT_SYNC_TASK_ID, ">>> Number of targets: ${bazelProject.targets.size}")
+          val targetLimitKey = "bazel.x.target.limit"
+          val targetLimit = Registry.intValue(targetLimitKey, 5845)
+          if (bazelProject.targets.size > targetLimit) {
+            project.syncConsole.addWarnMessage(PROJECT_SYNC_TASK_ID, "Too many targets: ${bazelProject.targets.size} > $targetLimit")
+            project.syncConsole.addMessage(PROJECT_SYNC_TASK_ID, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+            project.syncConsole.addMessage(PROJECT_SYNC_TASK_ID, "Too many targets: ${bazelProject.targets.size} > $targetLimit")
+            project.syncConsole.addMessage(PROJECT_SYNC_TASK_ID, "Reduce the number of targets or bump the limit using registry: `$targetLimitKey`")
+            project.syncConsole.addMessage(PROJECT_SYNC_TASK_ID, "Slack: #devex-support")
+            project.syncConsole.addMessage(PROJECT_SYNC_TASK_ID, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+            return@use SyncResultStatus.FAILURE
+          }
+=======
+            ) { server.runSync(buildProject, PROJECT_SYNC_TASK_ID) }
+          project.syncConsole.addMessage(PROJECT_SYNC_TASK_ID, ">>> Number of targets: ${bazelProject.targets.size}")
+          val targetLimitKey = "bazel.x.target.limit"
+          val targetLimit = Registry.intValue(targetLimitKey, 5845)
+          if (bazelProject.targets.size > targetLimit) {
+            project.syncConsole.addWarnMessage(PROJECT_SYNC_TASK_ID, "Too many targets: ${bazelProject.targets.size} > $targetLimit")
+            project.syncConsole.addMessage(PROJECT_SYNC_TASK_ID, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+            project.syncConsole.addMessage(PROJECT_SYNC_TASK_ID, "Too many targets: ${bazelProject.targets.size} > $targetLimit")
+            project.syncConsole.addMessage(PROJECT_SYNC_TASK_ID, "Reduce the number of targets or bump the limit using registry: `$targetLimitKey`")
+            project.syncConsole.addMessage(PROJECT_SYNC_TASK_ID, "Slack: #devex-support")
+            project.syncConsole.addMessage(PROJECT_SYNC_TASK_ID, "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+            return@use SyncResultStatus.FAILURE
+          }
+>>>>>>> 8055feb16 (capping number of targets)
           if (bazelProject.hasError && bazelProject.targets.isEmpty()) return@use SyncResultStatus.FAILURE
           project.withSubtask(
             reporter = progressReporter,
