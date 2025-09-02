@@ -983,6 +983,10 @@
             class="org.jetbrains.bazel.action.registered.OpenBazelQueryToolWindowAction">
     </action>
 
+    <action id="Bazel.OpenXSettingsDialogAction"
+            class="org.jetbrains.bazel.action.registered.OpenXSettingsDialogAction">
+    </action>
+
     <action id="Bazel.OpenProjectViewFile"
             class="org.jetbrains.bazel.action.registered.OpenProjectViewAction">
     </action>

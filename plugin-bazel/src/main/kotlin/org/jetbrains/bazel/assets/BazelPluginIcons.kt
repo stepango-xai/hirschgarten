@@ -11,6 +11,9 @@ object BazelPluginIcons {
   val bazel: Icon = loadIcon("icons/bazel.svg")
 
   @JvmField
+  val x: Icon = loadIcon("icons/x.svg")
+
+  @JvmField
   val bazelConfig: Icon = loadIcon("icons/bazelConfig.svg")
 
   @JvmField

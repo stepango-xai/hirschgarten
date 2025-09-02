@@ -36,6 +36,10 @@ internal fun configureBazelToolWindowToolBar(
         addSeparator()
         add(actionManager.getAction("Bazel.OpenBazelQueryToolWindowAction"))
       }
+      
+      // Add X Settings action
+      addSeparator()
+      add(actionManager.getAction("Bazel.OpenXSettingsDialogAction"))
     }
 
   val actionToolbar = actionManager.createActionToolbar("Bazel Toolbar", actionGroup, true)
